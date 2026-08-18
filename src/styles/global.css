@@ -1,0 +1,89 @@
+:root {
+  color: #17202a;
+  background: #f7f6f2;
+  font-family:
+    Vazirmatn,
+    IRANSans,
+    'Noto Sans Arabic',
+    'Noto Sans',
+    Tahoma,
+    Arial,
+    sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  direction: rtl;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page-shell {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 32px 20px;
+}
+
+.prototype-shell {
+  width: min(100%, 720px);
+  padding: clamp(24px, 5vw, 48px);
+  border: 1px solid #ded8ce;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.prototype-heading {
+  display: grid;
+  gap: 12px;
+}
+
+.prototype-label {
+  margin: 0;
+  color: #5d6571;
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+h1 {
+  margin: 0;
+  color: #111827;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.15;
+}
+
+.prototype-placeholder {
+  margin-top: 32px;
+  padding: 24px;
+  border: 1px dashed #b8b0a4;
+  border-radius: 8px;
+  background: #fbfaf7;
+  color: #3f4651;
+  line-height: 1.9;
+}
+
+.prototype-placeholder p {
+  margin: 0;
+}
