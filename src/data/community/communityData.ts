@@ -262,5 +262,5 @@ function joinedDateFor(index: number) {
   const month = String((index % 12) + 1).padStart(2, '0')
   const day = String(((index * 3) % 27) + 1).padStart(2, '0')
 
-  return `2026-${month}-${day}`
+  return `2025-${month}-${day}`
 }

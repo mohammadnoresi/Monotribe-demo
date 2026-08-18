@@ -3,7 +3,9 @@ import ForceGraph3D, { type ForceGraphMethods, type LinkObject, type NodeObject 
 import * as THREE from 'three'
 import type { GraphLink, GraphNode } from '../types/community.ts'
 import { friendGraph, primaryDemoUserId } from '../data/community/index.ts'
+import { getTrustProfileContext } from '../data/community/profileData.ts'
 import { findShortestFriendPath, pathLinkKey } from '../utils/friendPath.ts'
+import { MemberTrustProfile } from './MemberTrustProfile.tsx'
 
 type FriendGraphNode = GraphNode & NodeObject
 type FriendGraphLink = GraphLink & LinkObject<FriendGraphNode, GraphLink>
@@ -21,6 +23,7 @@ export function FriendNetworkGraph() {
   const graphRef = useRef<ForceGraphMethods<FriendGraphNode, FriendGraphLink> | undefined>(undefined)
   const containerRef = useRef<HTMLDivElement>(null)
   const [selectedMemberId, setSelectedMemberId] = useState(primaryDemoUserId)
+  const [profileMemberId, setProfileMemberId] = useState<string | null>(null)
   const [hoveredMemberId, setHoveredMemberId] = useState<string | null>(null)
   const size = useElementSize(containerRef)
 
@@ -55,6 +58,16 @@ export function FriendNetworkGraph() {
   }, [selectedPath.path])
 
   const selectedMember = membersById.get(selectedMemberId) ?? membersById.get(primaryDemoUserId)!
+  const profileMember = profileMemberId ? membersById.get(profileMemberId) : null
+  const profilePath = useMemo(
+    () => findShortestFriendPath(friendGraph.links, primaryDemoUserId, profileMemberId ?? selectedMemberId),
+    [profileMemberId, selectedMemberId],
+  )
+  const profilePathNames = profilePath.path
+    .map((memberId) => membersById.get(memberId)?.displayName)
+    .filter(Boolean)
+    .join(' ← ')
+  const profileContext = profileMemberId ? getTrustProfileContext(profileMemberId) : null
   const pathNames = selectedPath.path
     .map((memberId) => membersById.get(memberId)?.displayName)
     .filter(Boolean)
@@ -191,7 +204,21 @@ export function FriendNetworkGraph() {
           <h3>مسیر ارتباط</h3>
           <p>{pathNames || 'مسیر ارتباطی پیدا نشد.'}</p>
         </div>
+
+        <button type="button" className="profile-open-button" onClick={() => setProfileMemberId(selectedMember.id)}>
+          مشاهده پروفایل
+        </button>
       </aside>
+
+      {profileContext && profileMember ? (
+        <MemberTrustProfile
+          profile={profileContext}
+          avatarUrl={profileMember.avatarThumbnail}
+          path={profilePath}
+          pathNames={profilePathNames}
+          onClose={() => setProfileMemberId(null)}
+        />
+      ) : null}
     </main>
   )
 }
