@@ -1,3 +1,7 @@
 export { graphScenarios, members, primaryDemoUserId, relationships } from './communityData.ts'
 export { friendGraph, fullRelationshipGraph, getGraphData, getGraphLinks, getGraphNodes, sponsorGraph, trustedGraph } from './graphSelectors.ts'
 export { getTrustProfileContext, relationshipActions } from './profileData.ts'
+export { filterSocialItems, getSocialItemsWithContext } from './socialSelectors.ts'
+export { socialItems } from './socialData.ts'
+export { getPulseActivitiesWithContext } from './pulseSelectors.ts'
+export { pulseActivities } from './pulseData.ts'
