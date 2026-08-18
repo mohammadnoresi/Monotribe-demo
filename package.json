@@ -10,16 +10,20 @@
     "preview": "vite preview",
     "typecheck": "tsc -b",
     "validate:data": "node --experimental-strip-types scripts/validateCommunityData.ts",
+    "validate:paths": "node --experimental-strip-types scripts/validateFriendPaths.ts",
     "generate:avatar-thumbs": "node scripts/generateAvatarThumbnails.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-force-graph-3d": "^1.29.1",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@types/node": "^26.2.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "@types/three": "^0.185.4",
     "@vitejs/plugin-react": "^5.0.0",
     "typescript": "^5.9.2",
     "vite": "^7.1.2"

@@ -61,7 +61,7 @@ export const members: Member[] = memberBlueprints.map(
       avatarThumbnailFileName,
       avatarPath: `${avatarSourceDirectory}/${avatarFileName}`,
       avatarThumbnailPath: `${avatarThumbnailDirectory}/${avatarThumbnailFileName}`,
-      verified: index % 11 !== 0,
+      verified: index === 0 || index % 11 !== 0,
       joinedDate: joinedDateFor(index),
       sponsorId,
       followerCount: 18 + ((index * 7) % 130),

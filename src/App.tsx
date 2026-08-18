@@ -1,8 +1,5 @@
-import { HomePage } from './pages/HomePage.tsx'
-import { friendGraph } from './data/community/graphSelectors.ts'
-
-void friendGraph
+import { NetworkGraphPage } from './pages/NetworkGraphPage.tsx'
 
 export function App() {
-  return <HomePage />
+  return <NetworkGraphPage />
 }
