@@ -29,6 +29,13 @@ export function PrototypeNav({ currentSection, onNavigate }: PrototypeNavProps) 
       >
         نبض قبیله
       </button>
+      <button
+        type="button"
+        className={currentSection === 'invite' ? 'is-active' : ''}
+        onClick={() => onNavigate('invite')}
+      >
+        دعوت مسئولانه
+      </button>
     </nav>
   )
 }

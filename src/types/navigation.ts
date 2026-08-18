@@ -1,1 +1,1 @@
-export type AppSection = 'graph' | 'requests' | 'pulse'
+export type AppSection = 'graph' | 'requests' | 'pulse' | 'invite'

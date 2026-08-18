@@ -20,6 +20,28 @@ Future prototype screens can use this ID as the default viewer when demonstratin
 
 Follow relationships are intentionally not part of the graph dataset yet.
 
+## Prototype Invitations
+
+Invitation data for the sponsorship-flow prototype lives in:
+
+- `src/data/community/invitationData.ts`
+- `src/data/community/invitationSelectors.ts`
+
+The questionnaire text is taken from the source MonoTribe concept document, from the section titled `فرآیند ساخت دعوتنامه`. The prototype keeps these questions static and does not add real invitation delivery, account creation, authentication, expiration, or backend validation.
+
+Generated invitation links are frontend-only examples. They include:
+
+- inviter member ID
+- invitation ID
+- invited person's name
+- a deterministic prototype signature
+
+Links use a hash route shaped like `/#/invite/prototype/...` so the Vite-only prototype can show a fake landing page without adding a backend or router package.
+
+This demonstrates that `سارا → علی` is a different invitation from `سارا → فرد دیگر` or `عضو دیگر → علی`. It is not a production security mechanism.
+
+Sponsor should remain a historical introduction relationship. It should not be treated as a follower count, referral reward, or popularity metric.
+
 ## Avatars
 
 Prepared profile images live in `src/assets/Avatar/`.

@@ -27,7 +27,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 button,
@@ -855,6 +855,343 @@ h2 {
   font-weight: 700;
 }
 
+.invite-screen {
+  min-height: 100vh;
+  padding: 88px 28px 32px;
+  background: #f6f0df;
+  color: #17201c;
+  overflow-y: auto;
+}
+
+.invite-hero {
+  max-width: 1220px;
+  margin: 0 auto 22px;
+}
+
+.invite-hero .network-kicker {
+  color: #657168;
+}
+
+.invite-hero h1 {
+  color: #17201c;
+}
+
+.invite-hero p:last-child {
+  max-width: 760px;
+  margin: 12px 0 0;
+  color: #4b554f;
+  line-height: 1.9;
+}
+
+.invite-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+  gap: 16px;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.invite-flow,
+.invite-preview-panel {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.invite-step,
+.invite-preview-panel {
+  padding: 16px;
+  border: 1px solid rgba(23, 32, 28, 0.1);
+  border-radius: 8px;
+  background: #fffdf5;
+  box-shadow: 0 14px 36px rgba(23, 32, 28, 0.05);
+}
+
+.invite-step > header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.invite-step > header span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 50%;
+  background: #17201c;
+  color: #fffdf5;
+  font-weight: 800;
+}
+
+.invite-step h2,
+.invite-preview-panel h2 {
+  margin: 0;
+  color: #17201c;
+  font-size: 1.18rem;
+}
+
+.invite-preview-panel h2:not(:first-child) {
+  margin-top: 4px;
+}
+
+.invite-name-field {
+  display: grid;
+  gap: 8px;
+}
+
+.invite-name-field span,
+.invite-source,
+.invite-blocked-note {
+  color: #657168;
+  line-height: 1.75;
+}
+
+.invite-name-field input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid rgba(23, 32, 28, 0.14);
+  border-radius: 8px;
+  background: #f6f0df;
+  color: #17201c;
+  font: inherit;
+}
+
+.invite-name-field input:focus {
+  outline: 2px solid rgba(27, 107, 90, 0.28);
+  outline-offset: 2px;
+}
+
+.sponsor-explain-box,
+.invite-responsibility,
+.generated-invite-card,
+.landing-sponsor-box {
+  display: grid;
+  gap: 7px;
+  margin-top: 12px;
+  padding: 13px;
+  border: 1px solid rgba(27, 107, 90, 0.18);
+  border-radius: 8px;
+  background: #eef8f4;
+}
+
+.sponsor-explain-box strong,
+.invite-responsibility strong,
+.generated-invite-card strong,
+.landing-sponsor-box strong {
+  color: #1b6b5a;
+}
+
+.sponsor-explain-box span,
+.invite-responsibility p,
+.generated-invite-card p,
+.generated-invite-card span,
+.landing-sponsor-box span {
+  color: #39433d;
+  line-height: 1.75;
+}
+
+.trust-question-list {
+  display: grid;
+  gap: 12px;
+}
+
+.trust-question {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 13px;
+  border: 1px solid rgba(23, 32, 28, 0.1);
+  border-radius: 8px;
+  background: #f8f3e6;
+}
+
+.trust-question legend {
+  padding: 0;
+  color: #17201c;
+  line-height: 1.8;
+  font-weight: 700;
+}
+
+.trust-question div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trust-question button {
+  padding: 8px 14px;
+  border: 1px solid rgba(23, 32, 28, 0.12);
+  border-radius: 999px;
+  background: #fffdf5;
+  color: #17201c;
+  font-weight: 700;
+}
+
+.trust-question button.is-active {
+  border-color: #1b6b5a;
+  background: #1b6b5a;
+  color: #fffdf5;
+}
+
+.invite-responsibility dl {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 0;
+}
+
+.invite-responsibility div {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.invite-responsibility dt {
+  color: #657168;
+}
+
+.invite-responsibility dd {
+  margin: 0;
+  color: #17201c;
+  font-weight: 700;
+}
+
+.invite-responsibility-needs-review {
+  border-color: rgba(215, 184, 97, 0.45);
+  background: #fbf4dc;
+}
+
+.invite-responsibility-blocked {
+  border-color: rgba(147, 55, 55, 0.25);
+  background: #f9e9e4;
+}
+
+.generate-invite-button,
+.invitation-landing-preview button {
+  width: 100%;
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #17201c;
+  color: #fffdf5;
+  font-weight: 800;
+}
+
+.invitation-route-screen {
+  display: grid;
+  place-items: center;
+}
+
+.invitation-route-card {
+  display: grid;
+  gap: 14px;
+  width: min(720px, 100%);
+  padding: 24px;
+  border: 1px solid rgba(23, 32, 28, 0.1);
+  border-radius: 8px;
+  background: #fffdf5;
+  box-shadow: 0 18px 42px rgba(23, 32, 28, 0.08);
+}
+
+.invitation-route-card .network-kicker {
+  margin: 0;
+  color: #657168;
+}
+
+.invitation-route-card h1 {
+  margin: 0;
+  color: #17201c;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  line-height: 1.6;
+}
+
+.invitation-route-card > p {
+  margin: 0;
+  color: #4b554f;
+  line-height: 1.9;
+}
+
+.invitation-route-card button {
+  padding: 13px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #17201c;
+  color: #fffdf5;
+  font-weight: 800;
+}
+
+.generate-invite-button:disabled {
+  cursor: not-allowed;
+  background: #9aa29b;
+}
+
+.generated-invite-card code {
+  display: block;
+  overflow-wrap: anywhere;
+  padding: 10px;
+  border-radius: 8px;
+  background: #17201c;
+  color: #f6f0df;
+  direction: ltr;
+  text-align: left;
+}
+
+.invitation-landing-preview {
+  display: grid;
+  gap: 12px;
+  padding: 15px;
+  border: 1px solid rgba(23, 32, 28, 0.1);
+  border-radius: 8px;
+  background: #f8f3e6;
+}
+
+.invitation-landing-preview .network-kicker {
+  margin: 0;
+  color: #657168;
+}
+
+.invitation-landing-preview h3 {
+  margin: 0;
+  color: #17201c;
+  font-size: 1.18rem;
+  line-height: 1.75;
+}
+
+.invitation-landing-preview > p {
+  margin: 0;
+  color: #4b554f;
+  line-height: 1.85;
+}
+
+.prototype-invitation-list {
+  display: grid;
+  gap: 10px;
+}
+
+.prototype-invitation-list article {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid rgba(23, 32, 28, 0.1);
+  border-radius: 8px;
+  background: #f8f3e6;
+}
+
+.prototype-invitation-list strong {
+  color: #17201c;
+}
+
+.prototype-invitation-list span {
+  color: #657168;
+}
+
+.prototype-invitation-list em {
+  color: #1b6b5a;
+  font-style: normal;
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   body {
     overflow: auto;
@@ -916,7 +1253,8 @@ h2 {
 
   .requests-hero,
   .request-grid,
-  .pulse-layout {
+  .pulse-layout,
+  .invite-layout {
     grid-template-columns: 1fr;
   }
 
@@ -929,6 +1267,14 @@ h2 {
   }
 
   .filter-group {
+    grid-template-columns: 1fr;
+  }
+
+  .invite-screen {
+    padding: 92px 16px 24px;
+  }
+
+  .invite-responsibility div {
     grid-template-columns: 1fr;
   }
 }
