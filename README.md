@@ -33,6 +33,12 @@ Run the local development server:
 pnpm run dev
 ```
 
+Create a production build:
+
+```bash
+pnpm run build
+```
+
 Validate the project:
 
 ```bash
@@ -40,6 +46,16 @@ pnpm run typecheck
 pnpm run build
 git diff --check
 ```
+
+## GitHub Pages Deployment
+
+The prototype is configured for deployment at:
+
+```text
+https://USERNAME.github.io/Monotribe-demo/
+```
+
+Push to the `main` branch to let GitHub Actions build the Vite app and deploy the `dist/` folder to GitHub Pages automatically.
 
 ## Prototype Data
 
