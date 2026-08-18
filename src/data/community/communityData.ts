@@ -56,7 +56,7 @@ export const members: Member[] = memberBlueprints.map(
       ageRange,
       city,
       profession,
-      bio: `${profession} از ${city} و عضو ${clusterLabels[clusterId]}. این پروفایل برای سناریوهای پژوهشی مونوترایب ساخته شده است.`,
+      bio: `${profession} از ${city} و عضو ${clusterLabels[clusterId]}.`,
       avatarFileName,
       avatarThumbnailFileName,
       avatarPath: `${avatarSourceDirectory}/${avatarFileName}`,
@@ -259,7 +259,7 @@ export const graphScenarios: GraphScenario[] = [
     id: 'distance-1-friend',
     title: 'یک لینک دوستی',
     memberId: 'mt003',
-    description: 'نگار مستقیما با کاربر دمو دوست است و برای نمایش ارتباط درجه یک مناسب است.',
+    description: 'نگار مستقیما با اکانت شما دوست است و برای نمایش ارتباط درجه یک مناسب است.',
   },
   {
     id: 'distance-2-friend',
@@ -271,7 +271,7 @@ export const graphScenarios: GraphScenario[] = [
     id: 'distance-3-friend',
     title: 'سه لینک دوستی',
     memberId: 'mt026',
-    description: 'سینا از مسیر سارا ← آرش ← لیلا ← سینا به کاربر دمو وصل می‌شود.',
+    description: 'سینا از مسیر سارا ← آرش ← لیلا ← سینا به اکانت شما وصل می‌شود.',
   },
   {
     id: 'distance-4-friend',

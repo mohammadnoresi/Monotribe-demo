@@ -333,7 +333,7 @@ export function FriendNetworkGraph({ focusedMemberId, onFocusHandled }: FriendNe
           <img src={selectedMember.avatarThumbnail} alt="" className="member-card-avatar" />
           <div>
             <p className="member-card-eyebrow">
-              {selectedMember.id === primaryDemoUserId ? 'کاربر دمو' : 'عضو مونوترایب'}
+              {selectedMember.id === primaryDemoUserId ? 'اکانت شما' : 'عضو مونوترایب'}
             </p>
             <h2>{selectedMember.displayName}</h2>
           </div>
@@ -353,7 +353,7 @@ export function FriendNetworkGraph({ focusedMemberId, onFocusHandled }: FriendNe
             <dd>{selectedMember.verified ? 'تأیید شده' : 'در انتظار تأیید'}</dd>
           </div>
           <div>
-            <dt>فاصله از کاربر فعلی</dt>
+            <dt>فاصله از شما</dt>
             <dd>{formatDistance(graphMode, selectedPath.distance)}</dd>
           </div>
         </dl>
@@ -527,16 +527,16 @@ function formatDistance(graphMode: GraphMode, distance: number | null) {
   }
 
   if (graphMode === 'trusted') {
-    if (distance === null) return 'مسیر اعتماد مستقیم از کاربر فعلی پیدا نشد'
-    if (distance === 0) return 'کاربر فعلی'
+    if (distance === null) return 'مسیر اعتماد مستقیم از شما پیدا نشد'
+    if (distance === 0) return 'شما'
 
-    return `${toPersianDigits(distance)} رابطه اعتماد از کاربر فعلی فاصله دارد`
+    return `${toPersianDigits(distance)} رابطه اعتماد از شما فاصله دارد`
   }
 
   if (distance === null) return 'مسیر دوستی پیدا نشد'
   if (distance === 0) return 'این شما هستید'
 
-  return `${toPersianDigits(distance)} ارتباط دوستی با کاربر فعلی فاصله دارد`
+  return `با ${toPersianDigits(distance)} ارتباط دوستی با شما دوست است.`
 }
 
 function toPersianDigits(value: number) {
@@ -682,10 +682,10 @@ function getSelectedRelationshipContext(graphMode: GraphMode, selectedMemberId: 
     return `${selectedMember.displayName} در داده نمونه رابطه اعتماد مستقیم ثبت‌شده ندارد.`
   }
 
-  if (distance === null) return `${selectedMember.displayName} مسیر دوستی مشخصی با کاربر فعلی ندارد.`
-  if (distance === 0) return `${selectedMember.displayName} کاربر فعلی این نمونه است.`
+  if (distance === null) return `${selectedMember.displayName} مسیر دوستی مشخصی با شما ندارد.`
+  if (distance === 0) return `${selectedMember.displayName} اکانت شماست.`
 
-  return `${selectedMember.displayName} با ${toPersianDigits(distance)} ارتباط دوستی به کاربر فعلی می‌رسد.`
+  return ''
 }
 
 function useElementSize(ref: React.RefObject<HTMLElement | null>) {

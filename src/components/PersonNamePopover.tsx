@@ -160,8 +160,8 @@ export function PersonPathPopoverList({ memberIds, fallback, onOpenMember }: Per
 }
 
 function formatDistance(distance: number | null) {
-  if (distance === null) return 'مسیر ارتباطی مشخصی با کاربر فعلی پیدا نشد'
-  if (distance === 0) return 'پروفایل کاربر فعلی'
+  if (distance === null) return 'مسیر ارتباطی مشخصی با شما پیدا نشد'
+  if (distance === 0) return 'پروفایل شما'
 
-  return `${new Intl.NumberFormat('fa-IR', { useGrouping: false }).format(distance)} ارتباط با کاربر فعلی فاصله دارد`
+  return `${new Intl.NumberFormat('fa-IR', { useGrouping: false }).format(distance)} ارتباط با شما فاصله دارد`
 }

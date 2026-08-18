@@ -47,11 +47,6 @@ export function MemberTrustProfile({
 
       <div className="profile-content">
         <section className="profile-section">
-          <h3>هویت</h3>
-          <p>{member.bio}</p>
-        </section>
-
-        <section className="profile-section">
           <h3>عضویت</h3>
           <dl className="profile-facts">
             <div>
@@ -63,7 +58,7 @@ export function MemberTrustProfile({
               <dd>{formatMembershipDuration(member.joinedDate)}</dd>
             </div>
             <div>
-              <dt>عضو شده توسط</dt>
+              <dt>معرف</dt>
               <dd>
                 {sponsor ? (
                   <PersonNamePopover memberId={sponsor.id} onOpenMember={onOpenMember}>
@@ -105,17 +100,19 @@ export function MemberTrustProfile({
         </section>
 
         <section className="profile-section connection-section">
-          <h3>ارتباط با کاربر فعلی</h3>
+          <h3>ارتباط با شما</h3>
           <p className="connection-distance">{formatDistance(path.distance)}</p>
           <p className="connection-path">
             <PersonPathPopoverList memberIds={path.path} fallback={pathNames} onOpenMember={onOpenMember} />
           </p>
         </section>
 
-        <section className="profile-section graph-context-section">
-          <h3>{graphContextTitle}</h3>
-          <p>{graphContextDescription}</p>
-        </section>
+        {graphContextTitle === 'مسیر ارتباط دوستی' ? null : (
+          <section className="profile-section graph-context-section">
+            <h3>{graphContextTitle}</h3>
+            <p>{graphContextDescription}</p>
+          </section>
+        )}
 
         <section className="profile-section">
           <h3>نوع رابطه</h3>
@@ -185,10 +182,10 @@ function formatMembershipDuration(date: string) {
 }
 
 function formatDistance(distance: number | null) {
-  if (distance === null) return 'مسیر ارتباطی مشخصی با کاربر فعلی پیدا نشد'
-  if (distance === 0) return 'این پروفایل متعلق به کاربر فعلی است'
+  if (distance === null) return 'مسیر ارتباطی مشخصی با شما پیدا نشد'
+  if (distance === 0) return 'این پروفایل متعلق به شماست'
 
-  return `${toPersianDigits(distance)} ارتباط با کاربر فعلی فاصله دارد`
+  return `با ${toPersianDigits(distance)} ارتباط با شما دوست است.`
 }
 
 function toPersianDigits(value: number) {

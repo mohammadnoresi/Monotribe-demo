@@ -5,7 +5,7 @@ import {
   getInvitationStatus,
   getPrototypeInvitations,
 } from '../data/community/invitationSelectors.ts'
-import { invitationQuestionSource, invitationQuestions } from '../data/community/invitationData.ts'
+import { invitationQuestions } from '../data/community/invitationData.ts'
 import { primaryDemoUserId } from '../data/community/communityData.ts'
 import type { ReactNode } from 'react'
 import type { GeneratedInvitation, InvitationAnswer, InvitationAnswerValue } from '../types/invitation.ts'
@@ -55,10 +55,7 @@ export function InvitePage() {
       <header className="invite-hero">
         <p className="network-kicker">نمونه‌ی اولیه پژوهشی</p>
         <h1>دعوت از یک فرد قابل اعتماد</h1>
-        <p>
-          این جریان نشان می‌دهد دعوت کردن در مونوترایب یک مسئولیت اجتماعی است. سارا فقط زمانی لینک می‌سازد که
-          بتواند با اطمینان بگوید این فرد را به قبیله معرفی می‌کند.
-        </p>
+        <p>این جریان نشان می‌دهد دعوت کردن در مونوترایب یک مسئولیت اجتماعی است.</p>
       </header>
 
       <div className="invite-layout">
@@ -82,7 +79,6 @@ export function InvitePage() {
           </InviteStep>
 
           <InviteStep number="۲" title="پرسش‌های اعتماد">
-            <p className="invite-source">منبع پرسش‌ها: {invitationQuestionSource}</p>
             <div className="trust-question-list">
               {invitationQuestions.map((question) => {
                 const answer = answers.find((item) => item.questionId === question.id)?.value ?? 'partial'

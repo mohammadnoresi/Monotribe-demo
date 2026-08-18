@@ -57,10 +57,6 @@ export function RequestsPage({ onOpenMember }: RequestsPageProps) {
         <div>
           <p className="network-kicker">نمونه‌ی اولیه پژوهشی</p>
           <h1>درخواست‌ها و همراهی</h1>
-          <p>
-            اینجا ارزش شبکه اعتماد دیده می‌شود: هر درخواست، رویداد یا پیشنهاد کمک فقط وقتی معنا دارد که بدانیم
-            از چه مسیری به ما وصل شده است.
-          </p>
         </div>
         <div className="requests-summary" aria-label="خلاصه موارد">
           <span>{toPersianDigits(counts.event)} رویداد</span>
