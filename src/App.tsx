@@ -10,6 +10,7 @@ import type { AppSection } from './types/navigation.ts'
 
 export function App() {
   const [currentSection, setCurrentSection] = useState<AppSection>('graph')
+  const [focusedGraphMemberId, setFocusedGraphMemberId] = useState<string | null>(null)
   const [invitationRoute, setInvitationRoute] = useState(() => parsePrototypeInvitationLink(window.location.href))
 
   useEffect(() => {
@@ -31,13 +32,25 @@ export function App() {
     setCurrentSection(section)
   }
 
+  function openMemberInGraph(memberId: string) {
+    if (window.location.hash.startsWith('#/invite/prototype/')) {
+      window.history.pushState(null, '', `${window.location.pathname}${window.location.search}`)
+      setInvitationRoute(null)
+    }
+
+    setFocusedGraphMemberId(memberId)
+    setCurrentSection('graph')
+  }
+
   return (
     <>
       <PrototypeNav currentSection={invitationRoute ? 'invite' : currentSection} onNavigate={navigate} />
       {invitationRoute ? <InvitationLandingPage invitation={invitationRoute} /> : null}
-      {!invitationRoute && currentSection === 'graph' ? <NetworkGraphPage /> : null}
-      {!invitationRoute && currentSection === 'requests' ? <RequestsPage /> : null}
-      {!invitationRoute && currentSection === 'pulse' ? <PulsePage /> : null}
+      {!invitationRoute && currentSection === 'graph' ? (
+        <NetworkGraphPage focusedMemberId={focusedGraphMemberId} onFocusHandled={() => setFocusedGraphMemberId(null)} />
+      ) : null}
+      {!invitationRoute && currentSection === 'requests' ? <RequestsPage onOpenMember={openMemberInGraph} /> : null}
+      {!invitationRoute && currentSection === 'pulse' ? <PulsePage onOpenMember={openMemberInGraph} /> : null}
       {!invitationRoute && currentSection === 'invite' ? <InvitePage /> : null}
     </>
   )

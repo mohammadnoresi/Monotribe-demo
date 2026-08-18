@@ -23,6 +23,7 @@ export type SocialItemWithContext = SocialItem & {
   personAvatar: string
   personProfession: string
   distance: number | null
+  pathMemberIds: string[]
   pathNames: string
   relationshipContext: string
 }

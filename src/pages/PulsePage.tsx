@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { PersonNamePopover, PersonPathPopoverList } from '../components/PersonNamePopover.tsx'
 import { getPulseActivitiesWithContext } from '../data/community/pulseSelectors.ts'
 import type { PulseActivityWithContext, PulseSection } from '../types/pulse.ts'
 
@@ -14,7 +15,11 @@ const sectionDescriptions: Record<PulseSection, string> = {
   growth: 'نشانه‌های کلی که نشان می‌دهند این جامعه زنده و در حال شکل‌گیری است.',
 }
 
-export function PulsePage() {
+type PulsePageProps = {
+  onOpenMember: (memberId: string) => void
+}
+
+export function PulsePage({ onOpenMember }: PulsePageProps) {
   const activities = useMemo(() => getPulseActivitiesWithContext(), [])
   const sections: PulseSection[] = ['network', 'nearby', 'growth']
 
@@ -42,7 +47,7 @@ export function PulsePage() {
 
               <div className="pulse-list">
                 {sectionActivities.map((activity) => (
-                  <PulseCard key={activity.id} activity={activity} />
+                  <PulseCard key={activity.id} activity={activity} onOpenMember={onOpenMember} />
                 ))}
               </div>
             </section>
@@ -53,7 +58,13 @@ export function PulsePage() {
   )
 }
 
-function PulseCard({ activity }: { activity: PulseActivityWithContext }) {
+function PulseCard({
+  activity,
+  onOpenMember,
+}: {
+  activity: PulseActivityWithContext
+  onOpenMember: (memberId: string) => void
+}) {
   const primaryPerson = activity.people[0]
 
   return (
@@ -70,8 +81,29 @@ function PulseCard({ activity }: { activity: PulseActivityWithContext }) {
       <div className="pulse-context">
         <strong>{formatDistance(activity.distance)}</strong>
         <span>{activity.relevance}</span>
-        {activity.pathNames ? <p>{activity.pathNames}</p> : null}
+        {activity.pathNames ? (
+          <p>
+            <PersonPathPopoverList
+              memberIds={activity.pathMemberIds}
+              fallback={activity.pathNames}
+              onOpenMember={onOpenMember}
+            />
+          </p>
+        ) : null}
       </div>
+
+      {activity.people.length > 0 ? (
+        <div className="pulse-people-row">
+          <span>افراد مرتبط:</span>
+          <div>
+            {activity.people.map((person) => (
+              <PersonNamePopover key={person.id} memberId={person.id} onOpenMember={onOpenMember}>
+                {person.displayName}
+              </PersonNamePopover>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       <div className="pulse-card-footer">
         {activity.city ? <span>{activity.city}</span> : <span>کل شبکه</span>}

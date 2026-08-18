@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { PersonNamePopover, PersonPathPopoverList } from '../components/PersonNamePopover.tsx'
 import { filterSocialItems, getSocialItemsWithContext } from '../data/community/socialSelectors.ts'
 import type { DistanceFilter, KindFilter, LocationFilter, SocialItemKind, SocialItemWithContext } from '../types/social.ts'
 import type { ReactNode } from 'react'
@@ -19,7 +20,11 @@ const responseDoneLabel: Record<SocialItemKind, string> = {
   offer: 'درخواست شما ثبت شد',
 }
 
-export function RequestsPage() {
+type RequestsPageProps = {
+  onOpenMember: (memberId: string) => void
+}
+
+export function RequestsPage({ onOpenMember }: RequestsPageProps) {
   const [distanceFilter, setDistanceFilter] = useState<DistanceFilter>('5')
   const [locationFilter, setLocationFilter] = useState<LocationFilter>('all')
   const [kindFilter, setKindFilter] = useState<KindFilter>('all')
@@ -120,6 +125,7 @@ export function RequestsPage() {
             key={item.id}
             item={item}
             responseLabel={responses[item.id]}
+            onOpenMember={onOpenMember}
             onRespond={() =>
               setResponses((currentResponses) => ({
                 ...currentResponses,
@@ -142,10 +148,12 @@ export function RequestsPage() {
 function SocialItemCard({
   item,
   responseLabel,
+  onOpenMember,
   onRespond,
 }: {
   item: SocialItemWithContext
   responseLabel?: string
+  onOpenMember: (memberId: string) => void
   onRespond: () => void
 }) {
   return (
@@ -156,7 +164,10 @@ function SocialItemCard({
           <span className="request-type">{kindLabels[item.kind]}</span>
           <h2>{item.title}</h2>
           <p>
-            {item.personName}، {item.personProfession}
+            <PersonNamePopover memberId={item.personId} onOpenMember={onOpenMember}>
+              {item.personName}
+            </PersonNamePopover>
+            ، {item.personProfession}
           </p>
         </div>
       </div>
@@ -193,7 +204,13 @@ function SocialItemCard({
       <div className="relationship-context-box">
         <strong>{formatDistance(item.distance)}</strong>
         <span>{item.relationshipContext}</span>
-        <p>{item.pathNames}</p>
+        <p>
+          <PersonPathPopoverList
+            memberIds={item.pathMemberIds}
+            fallback={item.pathNames}
+            onOpenMember={onOpenMember}
+          />
+        </p>
       </div>
 
       <button type="button" className={responseLabel ? 'request-action is-done' : 'request-action'} onClick={onRespond}>

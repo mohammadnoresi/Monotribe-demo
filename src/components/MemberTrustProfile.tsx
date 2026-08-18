@@ -1,16 +1,29 @@
 import type { FriendPathResult } from '../utils/friendPath.ts'
 import type { TrustProfileContext } from '../data/community/profileData.ts'
 import { primaryDemoUserId } from '../data/community/index.ts'
+import { PersonNamePopover, PersonPathPopoverList } from './PersonNamePopover.tsx'
 
 type MemberTrustProfileProps = {
   profile: TrustProfileContext
   avatarUrl: string
   path: FriendPathResult
   pathNames: string
+  graphContextTitle: string
+  graphContextDescription: string
+  onOpenMember: (memberId: string) => void
   onClose: () => void
 }
 
-export function MemberTrustProfile({ profile, avatarUrl, path, pathNames, onClose }: MemberTrustProfileProps) {
+export function MemberTrustProfile({
+  profile,
+  avatarUrl,
+  path,
+  pathNames,
+  graphContextTitle,
+  graphContextDescription,
+  onOpenMember,
+  onClose,
+}: MemberTrustProfileProps) {
   const { member, sponsor } = profile
 
   return (
@@ -51,7 +64,17 @@ export function MemberTrustProfile({ profile, avatarUrl, path, pathNames, onClos
             </div>
             <div>
               <dt>عضو شده توسط</dt>
-              <dd>{sponsor ? sponsor.displayName : member.id === primaryDemoUserId ? 'شروع‌کننده شبکه دمو' : 'ثبت نشده'}</dd>
+              <dd>
+                {sponsor ? (
+                  <PersonNamePopover memberId={sponsor.id} onOpenMember={onOpenMember}>
+                    {sponsor.displayName}
+                  </PersonNamePopover>
+                ) : member.id === primaryDemoUserId ? (
+                  'شروع‌کننده شبکه دمو'
+                ) : (
+                  'ثبت نشده'
+                )}
+              </dd>
             </div>
           </dl>
           {sponsor ? (
@@ -82,9 +105,16 @@ export function MemberTrustProfile({ profile, avatarUrl, path, pathNames, onClos
         </section>
 
         <section className="profile-section connection-section">
-          <h3>ارتباط با من</h3>
+          <h3>ارتباط با کاربر فعلی</h3>
           <p className="connection-distance">{formatDistance(path.distance)}</p>
-          <p className="connection-path">{pathNames || 'مسیر ارتباطی پیدا نشد.'}</p>
+          <p className="connection-path">
+            <PersonPathPopoverList memberIds={path.path} fallback={pathNames} onOpenMember={onOpenMember} />
+          </p>
+        </section>
+
+        <section className="profile-section graph-context-section">
+          <h3>{graphContextTitle}</h3>
+          <p>{graphContextDescription}</p>
         </section>
 
         <section className="profile-section">
@@ -155,10 +185,10 @@ function formatMembershipDuration(date: string) {
 }
 
 function formatDistance(distance: number | null) {
-  if (distance === null) return 'مسیر ارتباطی مشخصی با شما پیدا نشد'
-  if (distance === 0) return 'این پروفایل متعلق به شماست'
+  if (distance === null) return 'مسیر ارتباطی مشخصی با کاربر فعلی پیدا نشد'
+  if (distance === 0) return 'این پروفایل متعلق به کاربر فعلی است'
 
-  return `شما ${toPersianDigits(distance)} ارتباط فاصله دارید`
+  return `${toPersianDigits(distance)} ارتباط با کاربر فعلی فاصله دارد`
 }
 
 function toPersianDigits(value: number) {

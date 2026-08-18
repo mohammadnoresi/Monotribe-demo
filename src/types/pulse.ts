@@ -30,6 +30,7 @@ export type PulseActivityWithContext = PulseActivity & {
     profession: string
   }>
   distance: number | null
+  pathMemberIds: string[]
   pathNames: string
   relevance: string
 }

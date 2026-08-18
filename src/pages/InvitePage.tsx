@@ -88,8 +88,13 @@ export function InvitePage() {
                 const answer = answers.find((item) => item.questionId === question.id)?.value ?? 'partial'
 
                 return (
-                  <fieldset className="trust-question" key={question.id}>
-                    <legend>{question.text}</legend>
+                  <div
+                    className="trust-question"
+                    key={question.id}
+                    role="group"
+                    aria-labelledby={`trust-question-${question.id}`}
+                  >
+                    <h3 id={`trust-question-${question.id}`}>{question.text}</h3>
                     <div>
                       {answerValues.map((value) => (
                         <button
@@ -102,7 +107,7 @@ export function InvitePage() {
                         </button>
                       ))}
                     </div>
-                  </fieldset>
+                  </div>
                 )
               })}
             </div>

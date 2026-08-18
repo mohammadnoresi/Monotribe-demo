@@ -21,6 +21,7 @@ export function getSocialItemsWithContext(): SocialItemWithContext[] {
       personAvatar: member?.avatarThumbnail ?? '',
       personProfession: member?.profession ?? '',
       distance: path.distance,
+      pathMemberIds: path.path,
       pathNames,
       relationshipContext: relationshipContext(path.distance, pathNames),
     }

@@ -39,6 +39,7 @@ export function getPulseActivitiesWithContext(): PulseActivityWithContext[] {
         }
       }),
       distance: path.distance,
+      pathMemberIds: path.path,
       pathNames,
       relevance: relevanceText(activity.type, path.distance, pathNames),
     }

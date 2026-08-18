@@ -1,5 +1,10 @@
 import { FriendNetworkGraph } from '../components/FriendNetworkGraph.tsx'
 
-export function NetworkGraphPage() {
-  return <FriendNetworkGraph />
+type NetworkGraphPageProps = {
+  focusedMemberId: string | null
+  onFocusHandled: () => void
+}
+
+export function NetworkGraphPage({ focusedMemberId, onFocusHandled }: NetworkGraphPageProps) {
+  return <FriendNetworkGraph focusedMemberId={focusedMemberId} onFocusHandled={onFocusHandled} />
 }
