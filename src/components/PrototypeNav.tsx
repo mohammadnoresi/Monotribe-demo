@@ -8,10 +8,6 @@ type PrototypeNavProps = {
 export function PrototypeNav({ currentSection, onNavigate }: PrototypeNavProps) {
   return (
     <header className="app-header">
-      <div className="app-brand" aria-label="MonoTribe">
-        <strong>MonoTribe</strong>
-        <span>نمونه پژوهشی</span>
-      </div>
       <nav className="prototype-nav" aria-label="ناوبری نمونه اولیه">
         <button
           type="button"
